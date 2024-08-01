@@ -1,0 +1,43 @@
+void main() {
+  Map<String, dynamic> producto1 = {
+    'nombre': 'permatrago',
+    'categoria': 'comida',
+    'precio': 1000.0,
+    'discount': 10.0,
+    'iva': 10.0
+  };
+
+  Map<String, dynamic> producto2 = {
+    'nombre': 'padalustro',
+    'categoria': 'electrodomesticos',
+    'precio': 100000.0,
+    'discount': 5.0,
+    'iva': 19.0
+  };
+
+  Map<String, dynamic> producto3 = {
+    'nombre': 'permacomo',
+    'categoria': 'aseo',
+    'precio': 20000.0,
+    'discount': 0.0,
+    'iva': 16.0
+  };
+
+  List<Map<String, dynamic>> productos = [producto1, producto2, producto3];
+
+  for (var producto in productos) {
+    double precioFinal = calcularPrecioFinal(producto);
+    print(
+        'El precio final del producto ${producto['nombre']} es:${precioFinal}');
+  }
+}
+
+double calcularPrecioFinal(Map<String, dynamic> producto) {
+  double precio = producto['precio'];
+  double descuento = producto['discount'];
+  double iva = producto['iva'];
+  double precioConDescuento = precio - (precio * descuento / 100);
+  double precioFinal = precioConDescuento + (precioConDescuento * iva / 100);
+
+  return precioFinal;
+}
